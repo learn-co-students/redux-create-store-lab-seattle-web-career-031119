@@ -1,5 +1,5 @@
 export default function createStore(reducer) {
-  let state = reducer(undefined, '@@INIT');
+  let state;
 
   function dispatch(action){
     state = reducer(state, action)
@@ -9,6 +9,8 @@ export default function createStore(reducer) {
   function getState(){
     return state;
   }
+
+  state = dispatch({type: '@@INIT'})
 
   return {
     dispatch,
